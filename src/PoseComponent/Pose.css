@@ -1,0 +1,38 @@
+li {
+    margin: 10px 25px;
+    cursor: pointer;
+    display: flex;
+    display: block;
+    text-align: center;
+    min-width: 120px;
+    max-width: 120px;
+    position: relative;
+
+}
+
+/*.content {
+    display: flex;
+    border: 1px solid red;
+    display: block;
+}*/
+
+img {
+    width: 80%;
+    height: 80px;
+    pointer-events: none;
+}
+
+.remove-btn {
+    display: inline-block;
+    font-weight: bold;
+    color: gray;
+    visibility: hidden;
+    position: absolute;
+    right:0px;
+    top:0px;
+}
+
+.remove-btn:hover {
+    color: black;
+    text-shadow: 2px 2px 4px gray;
+}

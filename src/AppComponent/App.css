@@ -1,0 +1,71 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: beige;
+  overflow-x: hidden;
+}
+
+.input {
+  position: relative;
+  /*border: 1px solid red;*/
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+ul {
+  width: 100%;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 1px solid red;
+}
+
+.poses {
+  display: flex;
+  flex-direction: row;
+}
+
+.toggle-btn {
+  background-color: #b7b9ba;
+  border: 1px solid #aaa;
+  border-radius: 99px;
+  width: 50px;
+  height: 20px;
+  transition: background-color 0.1s ease, border-color 0.2s ease;
+  cursor: pointer;
+  box-shadow: 1px 1px 10px gray;
+  position: relative;
+}
+
+.toggle-btn .circle {
+  height: 15px;
+  width: 15px;
+  background-color: #fff;
+  border-radius: 99px;
+  transform: translateX(0);
+  transition: left 0.15s ease;
+  position: absolute;
+  left: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.toggle-btn.toggled {
+  background-color: rgb(83, 143, 83);
+}
+
+.toggle-btn:hover {
+  border-color: #6f6f6f;
+}
+
+.toggle-btn.toggled .circle {
+  left: calc(50px - 20px);
+}

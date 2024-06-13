@@ -1,0 +1,13 @@
+ul {
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid red;
+    flex-wrap: wrap;
+  }
+
+  .poses {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }

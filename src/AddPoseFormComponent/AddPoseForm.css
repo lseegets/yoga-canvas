@@ -1,0 +1,10 @@
+input {
+    padding: 1.5rem;
+    border: 1px solid #666;
+    border-radius: 3px
+}
+  
+input[type='text'] {
+    flex-grow: 1;
+    margin-right: 0.5rem;
+}
