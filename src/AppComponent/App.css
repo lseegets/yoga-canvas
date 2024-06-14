@@ -9,7 +9,6 @@ body {
 
 .input {
   position: relative;
-  /*border: 1px solid red;*/
   display: flex;
   flex-flow: column wrap;
   align-items: center;
@@ -17,20 +16,6 @@ body {
 
 h1 {
   text-align: center;
-}
-
-ul {
-  width: 100%;
-  list-style-type: none;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  border: 1px solid red;
-}
-
-.poses {
-  display: flex;
-  flex-direction: row;
 }
 
 .toggle-btn {
@@ -68,4 +53,23 @@ ul {
 
 .toggle-btn.toggled .circle {
   left: calc(50px - 20px);
+}
+
+.container {
+  border: 2px solid rgb(219, 215, 191);
+  min-height: 100px;
+  width: 100%;
+  position: relative;
+}
+
+.container-active {
+  border: 2px solid rgb(163, 160, 140);
+  min-height: 100px;
+  position: relative;
+}
+
+.container:hover,
+.container-active:hover {
+  border: 2px solid rgb(163, 160, 140);
+  background-color: rgb(230, 230, 197);
 }

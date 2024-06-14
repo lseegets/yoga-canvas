@@ -1,9 +1,8 @@
 import './App.css';
 import AddPoseForm from '../AddPoseFormComponent/AddPoseForm';
-import Pose from '../PoseComponent/Pose';
 import PoseList from '../PoseListComponent/PoseList';
+import { generateListId } from '../utilities';
 import { useState } from 'react';
-import { Reorder } from "framer-motion"
 
 export default function App() {
 
@@ -12,7 +11,6 @@ export default function App() {
   const [activeListIndex, setActiveListIndex] = useState(0);
 
   const addPose = (pose) => {
-    //setPoses((poses) => [...poses, pose]);
     setLists((prevLists) => {
       const newLists = prevLists.map((list, index) => {
         if (index === activeListIndex) {
@@ -34,7 +32,6 @@ export default function App() {
 
   const setActiveList = (index) => {
     setActiveListIndex(index);
-    console.log('active list: ' + activeListIndex);
   }
 
   const updateListOrder = (updatedList, updatedListIndex) => {
@@ -51,6 +48,14 @@ export default function App() {
     );
     setLists(updatedLists);
   };
+
+  const removeList = (index) => {
+    setLists((prevLists) => {
+      const updatedLists = [...prevLists];
+      updatedLists.splice(index, 1); // Remove list at index
+      return updatedLists;
+    });
+  }
 
   return (
     <div className="App">
@@ -77,12 +82,26 @@ export default function App() {
 
         <div>
           {lists && lists.map((list, index) => (
-            <h3 onClick={() => setActiveList(index)}>List {index + 1}
-              <PoseList key={index} index={index} list={list} removePose={removePose} updateListOrder={updateListOrder}/>
+            <h3
+              id={generateListId()}
+              key={index}
+              className={`container${activeListIndex === index ? '-active' : ''}`}
+              onClick={() => setActiveList(index)}
+            >
+              List {index + 1}
+              <PoseList
+                key={`pose-list-${index}`}
+                id={`pose-list-${index}`}
+                index={index}
+                list={list}
+                setActiveList={setActiveList}
+                removePose={removePose}
+                updateListOrder={updateListOrder}
+                removeList={removeList}
+              />
             </h3>
           ))}
-        </div>
-        
+        </div>        
       </main>
     </div>
   );

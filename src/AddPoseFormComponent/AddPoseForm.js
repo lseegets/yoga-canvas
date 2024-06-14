@@ -1,4 +1,4 @@
-import { generateId } from '../utilities';
+import { generatePoseId } from '../utilities';
 import './AddPoseForm.css';
 import React, { useState } from 'react';
 
@@ -14,7 +14,7 @@ export default function AddPoseForm(props) {
         e.preventDefault();
         if (text) {
             const pose = {
-                id: generateId(),
+                id: generatePoseId(),
                 text: text
             }
             props.addPose(pose);

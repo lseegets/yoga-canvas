@@ -1,20 +1,12 @@
 li {
     margin: 10px 25px;
     cursor: pointer;
-    display: flex;
     display: block;
     text-align: center;
     min-width: 120px;
     max-width: 120px;
     position: relative;
-
 }
-
-/*.content {
-    display: flex;
-    border: 1px solid red;
-    display: block;
-}*/
 
 img {
     width: 80%;
@@ -28,8 +20,8 @@ img {
     color: gray;
     visibility: hidden;
     position: absolute;
-    right:0px;
-    top:0px;
+    right: 0px;
+    top :0px;
 }
 
 .remove-btn:hover {

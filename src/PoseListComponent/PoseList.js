@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Reorder } from "framer-motion"
 import Pose from '../PoseComponent/Pose';
+import './PoseList.css';
 
-export default function PoseList({ index, list, removePose, updateListOrder }) {
+export default function PoseList({ index, list, removePose, updateListOrder, removeList }) {
 
     const [poses, setPoses] = useState([]);
 
@@ -15,16 +16,22 @@ export default function PoseList({ index, list, removePose, updateListOrder }) {
         updateListOrder(newOrder, index);
       };
 
+      const handleRemove = () => {
+        removeList(index);
+      }
+
     return (
-        <Reorder.Group axis="x" values={poses} onReorder={handleReorder}>
-            {Array.isArray(list) && poses.map((pose) => (
-                <Pose
-                    key={pose.id}
-                    pose={pose}
-                    removePose={removePose}
-              />
-            ))}
-        </Reorder.Group>
+      <Reorder.Group axis="x" values={poses} onReorder={handleReorder}>
+          {Array.isArray(list) && poses.map((pose) => (
+              <Pose
+                  key={pose.id}
+                  pose={pose}
+                  removePose={removePose}
+            />
+            
+          ))}
+          <div className='remove-ul-btn' onClick={handleRemove}>&times;</div>
+      </Reorder.Group>
     );
 }
 
