@@ -8,6 +8,11 @@ ul {
   margin: 0;
 }
 
+header {
+  display: inline-block;
+  overflow: hidden;
+}
+
 .poses {
   display: flex;
   flex-direction: row;
@@ -35,10 +40,23 @@ ul {
 
 .list-name {
   width: fit-content;
+  font-weight: bold;
+  float: left;
 }
 
 .list-name:hover {
   border: 1px solid black;
+}
+
+.hide-btn {
+  cursor: pointer;
+  width: fit-content;
+  float: left;
+  margin: auto 5px;
+}
+
+.hide-btn:hover {
+  text-shadow: 2px 2px 4px gray;
 }
 
 .remove-ul-btn {
