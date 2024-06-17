@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 export default function App() {
 
-  const [toggled, setToggled] = useState(false);
+  const [showPoseNames, setShowPoseNames] = useState(true);
   const [lists, setLists] = useState([[]]);
   const [activeListIndex, setActiveListIndex] = useState(0);
 
@@ -57,6 +57,10 @@ export default function App() {
     });
   }
 
+  const togglePoseNameVisibility = () => {
+    setShowPoseNames(!showPoseNames);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -65,24 +69,44 @@ export default function App() {
       <main>
         <div className="input">
         <button onClick={addList}>Add New List</button>
-          <AddPoseForm
-            addPose={addPose}
-          />
+        <AddPoseForm
+          addPose={addPose}
+          addList={addList}
+        />
 
-          <button
-            className={`toggle-btn ${toggled ? 'toggled' : ''}`}
-            onClick={() => setToggled(!toggled)}
-          >
-            <div className='circle'>
-
-            </div>
-          </button>
+        <button
+          className={`toggle-btn ${showPoseNames ? 'toggled' : ''}`}
+          onClick={togglePoseNameVisibility}
+        >
+          <div className='circle'></div>
+        </button>
 
         </div>
 
-        <div>
+        <div className="lists-container">
           {lists && lists.map((list, index) => (
-            <h3
+              <PoseList
+                key={`pose-list-${index}`}
+                id={generateListId()}
+                index={index}
+                list={list}
+                setActiveList={setActiveList}
+                removePose={removePose}
+                updateListOrder={updateListOrder}
+                removeList={removeList}
+                activeListIndex={activeListIndex}
+                showPoseNames={showPoseNames}
+              />
+          ))}
+        </div>      
+      </main>
+    </div>
+  );
+}
+
+/*
+
+<h3
               id={generateListId()}
               key={index}
               className={`container${activeListIndex === index ? '-active' : ''}`}
@@ -100,42 +124,22 @@ export default function App() {
                 removeList={removeList}
               />
             </h3>
+        
+        
+        
+<Reorder.Group className="lists-container" axis="y" values={lists} onReorder={setLists}>
+          {lists && lists.map((list, index) => (
+              <PoseList
+                key={`pose-list-${index}`}
+                id={generateListId()}
+                index={index}
+                list={list}
+                setActiveList={setActiveList}
+                removePose={removePose}
+                updateListOrder={updateListOrder}
+                removeList={removeList}
+                activeListIndex={activeListIndex}
+                showPoseNames={showPoseNames}
+              />
           ))}
-        </div>        
-      </main>
-    </div>
-  );
-}
-
-/*
-
-const removePose = (id) => {
-    setLists((prevLists) =>
-      prevLists.map((list) =>
-        list.filter((pose) => pose.id !== id)
-      )
-    );
-  };
-
-
-<ul className="poses">
-          {poses.map((pose) => (
-            <Pose
-              key={pose.id}
-              pose={pose}
-              removePose={removePose}
-            />
-          ))}
-        </ul>
-        
-        
-        
-<Reorder.Group axis="x" values={poses} onReorder={setPoses}>
-          {poses.map((pose) => (
-                <Pose
-                  key={pose.id}
-                  pose={pose}
-                  removePose={removePose}
-                />
-            ))}
-        </Reorder.Group>*/
+        </Reorder.Group> */

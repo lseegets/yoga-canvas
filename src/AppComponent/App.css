@@ -54,22 +54,3 @@ h1 {
 .toggle-btn.toggled .circle {
   left: calc(50px - 20px);
 }
-
-.container {
-  border: 2px solid rgb(219, 215, 191);
-  min-height: 100px;
-  width: 100%;
-  position: relative;
-}
-
-.container-active {
-  border: 2px solid rgb(163, 160, 140);
-  min-height: 100px;
-  position: relative;
-}
-
-.container:hover,
-.container-active:hover {
-  border: 2px solid rgb(163, 160, 140);
-  background-color: rgb(230, 230, 197);
-}

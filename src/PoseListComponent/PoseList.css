@@ -13,6 +13,34 @@ ul {
   flex-direction: row;
 }
 
+.container {
+  border: 2px solid rgb(219, 215, 191);
+  min-height: 100px;
+  width: 100%;
+  position: relative;
+}
+
+.container-active {
+  border: 2px solid rgb(163, 160, 140);
+  min-height: 100px;
+  position: relative;
+  width: 100%;
+}
+
+.container:hover,
+.container-active:hover {
+  border: 2px solid rgb(163, 160, 140);
+  background-color: rgb(230, 230, 197);
+}
+
+.list-name {
+  width: fit-content;
+}
+
+.list-name:hover {
+  border: 1px solid black;
+}
+
 .remove-ul-btn {
   font-weight: bold;
   color: gray;
@@ -20,6 +48,7 @@ ul {
   right: 0px;
   top: 0px;
   cursor: pointer;
+  visibility: hidden;
 }
 
 .remove-ul-btn:hover {

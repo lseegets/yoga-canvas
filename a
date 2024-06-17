@@ -1,0 +1,11 @@
+[33mcommit d798e9167a4d410adc3a56a319c10dd03d558c27[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Lee-Ann Seegets <69766648+lseegets@users.noreply.github.com>
+Date:   Fri Jun 14 14:05:45 2024 +0200
+
+    add remove list functionality
+
+[33mcommit efaeb5388dc18acb245145be057b9cb8c007c22f[m
+Author: Lee-Ann Seegets <69766648+lseegets@users.noreply.github.com>
+Date:   Thu Jun 13 17:35:48 2024 +0200
+
+    initial commit

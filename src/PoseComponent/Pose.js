@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import sampleImg from '../samplePose.svg'
 import { Reorder, useDragControls } from "framer-motion"
 
-export default function Pose({ pose, removePose }) {
+export default function Pose({ pose, removePose, showPoseNames }) {
 
     const [isHovering, setIsHovering] = useState(false);
     const controls = useDragControls()
@@ -13,14 +13,10 @@ export default function Pose({ pose, removePose }) {
     }
 
     const handleHover = () => {
-        if (!isHovering) {
-            setIsHovering(true);
-            document.getElementById(`remove-btn-${pose.id}`).style.visibility = 'visible';
-        } else {
-            setIsHovering(false);
-            document.getElementById(`remove-btn-${pose.id}`).style.visibility = 'hidden';
-        }
-    }
+        setIsHovering((prev) => !prev);
+        const visibility = !isHovering ? 'visible' : 'hidden';
+        document.getElementById(`remove-btn-${pose.id}`).style.visibility = visibility;
+      };
 
     return (
         <Reorder.Item value={pose} dragListener={false} dragControls={controls}
@@ -30,7 +26,7 @@ export default function Pose({ pose, removePose }) {
             onPointerDown={(e) => controls.start(e)}
             >
             <img src={sampleImg} alt='Sample pose'/>
-            <div className="text">{pose.text}</div>
+            {showPoseNames && <div className="pose-name">{pose.poseName}</div>}
             <div
                 className='remove-btn'
                 aria-label="Remove pose button"
@@ -42,8 +38,3 @@ export default function Pose({ pose, removePose }) {
         </Reorder.Item>
       );
 }
-
-/**
- * <Reorder.Item value={pose} dragListener={false} dragControls={controls}>
- * </Reorder.Item>
- */

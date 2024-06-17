@@ -4,21 +4,21 @@ import React, { useState } from 'react';
 
 export default function AddPoseForm(props) {
 
-    const [text, setText] = useState('');
+    const [poseName, setPoseName] = useState('');
 
     const handleInputChange = (e) => {
-        setText(e.target.value);
+        setPoseName(e.target.value);
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (text) {
+        if (poseName) {
             const pose = {
                 id: generatePoseId(),
-                text: text
+                poseName: poseName
             }
             props.addPose(pose);
-            setText('');
+            setPoseName('');
         }
     }
 
@@ -28,7 +28,7 @@ export default function AddPoseForm(props) {
             onSubmit={handleSubmit}
             >
                 <input
-                    value={text}
+                    value={poseName}
                     onChange={handleInputChange}
                     type="text"
                     aria-label="Search Asanas"
