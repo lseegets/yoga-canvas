@@ -8,9 +8,10 @@ ul {
   margin: 0;
 }
 
-header {
+.list-header {
   display: inline-block;
   overflow: hidden;
+  margin-left: 5px;
 }
 
 .poses {
@@ -19,40 +20,51 @@ header {
 }
 
 .container {
-  border: 2px solid rgb(219, 215, 191);
+  /*border: 2px solid #e9d7cb;*/
+  border-radius: 20px;
   min-height: 100px;
-  width: 100%;
+  width: auto;
   position: relative;
+  margin: 10px;
 }
 
 .container-active {
-  border: 2px solid rgb(163, 160, 140);
+  border: 2px solid #c7b2a3;
+  border-radius: 25px;
   min-height: 100px;
   position: relative;
-  width: 100%;
+  width: auto;
+  margin: 10px 3px;
 }
 
 .container:hover,
 .container-active:hover {
-  border: 2px solid rgb(163, 160, 140);
-  background-color: rgb(230, 230, 197);
+  border: 2px solid #c7b2a3;
+  background-color: #d8c8bdd3;
 }
 
 .list-name {
   width: fit-content;
   font-weight: bold;
   float: left;
+  font-size: 19px;
+  margin: 5px;
 }
 
 .list-name:hover {
   border: 1px solid black;
 }
 
-.hide-btn {
-  cursor: pointer;
-  width: fit-content;
+.hide-btn-container {
   float: left;
   margin: auto 5px;
+  cursor: pointer;
+}
+
+.hide-btn {
+  width: 30px;
+  height: 30px;
+  opacity: 0.3;
 }
 
 .hide-btn:hover {
@@ -67,6 +79,7 @@ header {
   top: 0px;
   cursor: pointer;
   visibility: hidden;
+  margin: 7px;
 }
 
 .remove-ul-btn:hover {

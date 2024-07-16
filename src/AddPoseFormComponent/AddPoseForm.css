@@ -8,3 +8,20 @@ input[type='text'] {
     flex-grow: 1;
     margin-right: 0.5rem;
 }
+
+.dropdown {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid gray;
+}
+
+.dropdown:empty {
+    border: none;
+}
+
+.dropdown-item {
+    cursor: pointer;
+    text-align: start;
+    margin: 2px 0;
+}

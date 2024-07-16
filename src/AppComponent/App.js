@@ -9,13 +9,14 @@ import jsPDF from 'jspdf';
 export default function App() {
 
   const [showPoseNames, setShowPoseNames] = useState(true);
-  const [lists, setLists] = useState([[]]);
+  const [lists, setLists] = useState([]);
+  const [listIds, setListIds] = useState([]);
   const [activeListIndex, setActiveListIndex] = useState(0);
   const pdfRef = useRef();
 
   const downloadPDF = () => {
     const input = pdfRef.current;
-    html2canvas(input).then((canvas) => {
+    html2canvas(input, { useCORS: true }).then((canvas) => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF('p', 'mm', 'a4', true);
       const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -43,11 +44,9 @@ export default function App() {
   }
 
   const addList = () => {
-    setLists((prevLists) => {
-      const newLists = [...prevLists, []];
-      return newLists;
-    });
+    setLists((prevLists) => [...prevLists, []]);
     setActiveListIndex(lists.length);
+    setListIds((prevIds) => [...prevIds, generateListId()]);
   }
 
   const setActiveList = (index) => {
@@ -75,6 +74,11 @@ export default function App() {
       updatedLists.splice(index, 1); // Remove list at index
       return updatedLists;
     });
+    setListIds((prevIds) => {
+      const updatedIds = [...prevIds];
+      updatedIds.splice(index, 1);
+      return updatedIds;
+    })
   }
 
   const togglePoseNameVisibility = () => {
@@ -90,18 +94,17 @@ export default function App() {
 
       <main>
         <div className="input">
-        <button onClick={addList}>Add List</button>
-        <AddPoseForm
-          addPose={addPose}
-          addList={addList}
-        />
-        <button
-          className={`toggle-btn ${showPoseNames ? 'toggled' : ''}`}
-          onClick={togglePoseNameVisibility}
-        >
-          <div className='circle'></div>
-        </button>
-
+          <button onClick={addList}>New List</button>
+          <AddPoseForm
+            addPose={addPose}
+            addList={addList}
+          />
+          <button
+            className={`toggle-btn ${showPoseNames ? 'toggled' : ''}`}
+            onClick={togglePoseNameVisibility}
+          >
+            <div className='circle'></div>
+          </button>
         </div>
 
         <div
@@ -111,7 +114,7 @@ export default function App() {
           {lists && lists.map((list, index) => (
               <PoseList
                 key={`pose-list-${index}`}
-                //id={generateListId()}
+                id={listIds[index]}
                 index={index}
                 list={list}
                 setActiveList={setActiveList}

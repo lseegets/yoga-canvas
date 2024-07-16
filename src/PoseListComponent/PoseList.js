@@ -3,14 +3,15 @@ import sanitizeHtml from "sanitize-html"
 import ContentEditable from 'react-contenteditable';
 import { Reorder } from "framer-motion";
 import Pose from '../PoseComponent/Pose';
+import visibleImg from '../visible.svg'
+import invisibleImg from '../invisible.svg'
 import './PoseList.css';
 
-export default function PoseList({ index, list, setActiveList, removePose, updateListOrder, removeList, activeListIndex, showPoseNames }) {
+export default function PoseList({ index, id, list, setActiveList, removePose, updateListOrder, removeList, activeListIndex, showPoseNames }) {
 
     const [poses, setPoses] = useState([]);
-    const [listName, setListName] = useState('New List');
+    const [listName, setListName] = useState(`List ${index + 1}`);
     const [hideName, setHideName] = useState(true);
-
 
     useEffect(() => {
       setPoses(list);
@@ -25,12 +26,12 @@ export default function PoseList({ index, list, setActiveList, removePose, updat
       removeList(index);
     }
 
-    const onListNameChange = (e) => {
+    const handleListNameChange = (e) => {
       setListName(sanitizeHtml(e.currentTarget.innerHTML));
     }
 
-    const handleHover = (e) => {
-      const visibility = e.type === 'mouseenter' ? 'visible' : 'hidden';
+    const handleHover = (hovering) => {
+      const visibility = hovering ? 'visible' : 'hidden';
       document.getElementById(`remove-ul-button-${index}`).style.visibility = visibility;
       document.getElementById(`hide-btn-${index}`).style.visibility = visibility;
     };
@@ -41,31 +42,36 @@ export default function PoseList({ index, list, setActiveList, removePose, updat
 
     const toggleHideName = () => {
       const visibility = !hideName ? 'visible' : 'hidden';
-      let listName = document.getElementById(`list-name-${index}`);
-      listName.style.visibility = visibility;
+      document.getElementById(`list-name-${index}`).style.visibility = visibility;
+      //document.getElementById(`list-name-${id}`).style.visibility = visibility;
       setHideName((prev) => !prev);
+      console.log(listName);
     }
 
     return (
       <div
         onClick={handleContainerClick}
         className={`container${activeListIndex === index ? '-active' : ''}`}
-        onMouseEnter={handleHover}
-        onMouseLeave={handleHover}
+        onMouseEnter={() => handleHover(true)}
+        onMouseLeave={() => handleHover(false)}
       >
-        <header>
+        <header className="list-header">
           <div
             id={`hide-btn-${index}`}
-            className="hide-btn"
+            className='hide-btn-container'
             onClick={toggleHideName}
           >
-            {hideName ? "(o)" : "(-)"}
+            <img
+              className="hide-btn"
+              src={hideName ? visibleImg : invisibleImg}
+              alt='Toggle list name visibility'></img>
           </div>
           <ContentEditable
             className="list-name"
             id={`list-name-${index}`}
+            //id={`list-name-${id}`}
             html={listName}
-            onChange={onListNameChange}
+            onChange={handleListNameChange}
             spellCheck="false"
           />
         </header>

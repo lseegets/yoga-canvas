@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: beige;
+  background-color: #f8ece4;
   overflow-x: hidden;
 }
 
@@ -44,7 +44,7 @@ h1 {
 }
 
 .toggle-btn.toggled {
-  background-color: rgb(83, 143, 83);
+  background-color: #d6b187;
 }
 
 .toggle-btn:hover {

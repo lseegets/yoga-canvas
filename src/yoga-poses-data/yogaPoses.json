@@ -1,0 +1,87 @@
+[
+    {
+        "id": 1,
+        "pose_name": "Sun Salutation 1",
+        "image" : "/svg/sun1.svg"
+    },
+    {
+        "id": 2,
+        "pose_name": "Sun Salutation 2",
+        "image" : "./svg/sun2.svg"
+    },
+    {
+        "id": 3,
+        "pose_name": "Sun Salutation 3",
+        "image" : "./svg/sun3.svg"
+    },
+    {
+        "id": 4,
+        "pose_name": "Sun Salutation 4",
+        "image" : "./svg/sun4.svg"
+    },
+    {
+        "id": 4,
+        "pose_name": "Sun Salutation 4",
+        "image" : "./svg/sun4.svg"
+    },
+    {
+        "id": 5,
+        "pose_name": "Sun Salutation 5",
+        "image" : "./svg/sun5.svg"
+    },
+    {
+        "id": 6,
+        "pose_name": "Sun Salutation 6",
+        "image" : "./svg/sun6.svg"
+    },
+    {
+        "id": 7,
+        "pose_name": "Sun Salutation 7",
+        "image" : "./svg/sun7.svg"
+    },
+    {
+        "id": 8,
+        "pose_name": "Warrior 1",
+        "image" : "./svg/warrior1.svg"
+    },
+    {
+        "id": 9,
+        "pose_name": "Warrior 2",
+        "image" : "./svg/warrior2.svg"
+    },
+    {
+        "id": 10,
+        "pose_name": "Chikitsa 1",
+        "image" : "./svg/chikitsa1.svg"
+    },
+    {
+        "id": 11,
+        "pose_name": "Chikitsa 2",
+        "image" : "./svg/chikitsa2.svg"
+    },
+    {
+        "id": 12,
+        "pose_name": "Chikitsa 3",
+        "image" : "./svg/chikitsa3.svg"
+    },
+    {
+        "id": 13,
+        "pose_name": "Chikitsa 4",
+        "image" : "./svg/chikitsa4.svg"
+    },
+    {
+        "id": 14,
+        "pose_name": "Chikitsa 5",
+        "image" : "./svg/chikitsa5.svg"
+    },
+    {
+        "id": 15,
+        "pose_name": "Chikitsa 6",
+        "image" : "./svg/chikitsa6.svg"
+    },
+    {
+        "id": 16,
+        "pose_name": "Chikitsa 7",
+        "image" : "./svg/chikitsa7.svg"
+    }
+]

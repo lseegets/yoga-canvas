@@ -1,6 +1,6 @@
 import './Pose.css';
 import React, { useState } from 'react';
-import sampleImg from '../samplePose.svg'
+
 import { Reorder, useDragControls } from "framer-motion"
 
 export default function Pose({ pose, removePose, showPoseNames }) {
@@ -25,7 +25,7 @@ export default function Pose({ pose, removePose, showPoseNames }) {
             onMouseLeave={handleHover}
             onPointerDown={(e) => controls.start(e)}
             >
-            <img src={sampleImg} alt='Sample pose'/>
+            <img src={pose.image} alt={pose.poseName}/>
             {showPoseNames && <div className="pose-name">{pose.poseName}</div>}
             <div
                 className='remove-btn'
