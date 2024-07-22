@@ -3,68 +3,57 @@ import AddPoseForm from '../AddPoseFormComponent/AddPoseForm';
 import PoseList from '../PoseListComponent/PoseList';
 import { generateListId } from '../utilities';
 import { useState, useRef } from 'react';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
 
 export default function App() {
-
   const [showPoseNames, setShowPoseNames] = useState(true);
   const [lists, setLists] = useState([]);
-  const [listIds, setListIds] = useState([]);
   const [activeListIndex, setActiveListIndex] = useState(0);
   const pdfRef = useRef();
-
-  const downloadPDF = () => {
-    const input = pdfRef.current;
-    html2canvas(input, { useCORS: true }).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4', true);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-      const imgWidth = canvas.width;
-      const imgHeight = canvas.height;
-      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-      const imgX = (pdfWidth - imgWidth * ratio) / 2;
-      const imgY = 30;
-      pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
-      pdf.save('lesson.pdf');
-    })
-  }
 
   const addPose = (pose) => {
     setLists((prevLists) => {
       const newLists = prevLists.map((list, index) => {
         if (index === activeListIndex) {
-          return [...list, pose];
+          return {
+            ...list,
+            poses: [...list.poses, pose],
+          };
         }
         return list;
       });
       return newLists;
     });
-  }
+  };
 
   const addList = () => {
-    setLists((prevLists) => [...prevLists, []]);
+    setLists((prevLists) => [
+      ...prevLists,
+      {
+        id: generateListId(),
+        name: 'New List',
+        poses: []
+      },
+    ]);
     setActiveListIndex(lists.length);
-    setListIds((prevIds) => [...prevIds, generateListId()]);
-  }
+  };
 
   const setActiveList = (index) => {
     setActiveListIndex(index);
-  }
+  };
 
-  const updateListOrder = (updatedList, updatedListIndex) => {
-    const updatedLists = lists.map((list, index) =>
-      index === updatedListIndex ? updatedList : list
-    	);
+  const updateList = (updatedList, updatedListId) => {
+    const updatedLists = lists.map((list) =>
+      list.id === updatedListId ? updatedList : list
+      //index === updatedListIndex ? updatedList : list
+    );
     setLists(updatedLists);
-  }
+  };
 
   const removePose = (id) => {
-    // Update lists based on current orderedPoses state
-    const updatedLists = lists.map((list) =>
-      list.filter((pose) => pose.id !== id)
-    );
+    const updatedLists = lists.map((list) => ({
+      ...list,
+      poses: list.poses.filter((pose) => pose.id !== id),
+    }));
     setLists(updatedLists);
   };
 
@@ -74,58 +63,47 @@ export default function App() {
       updatedLists.splice(index, 1); // Remove list at index
       return updatedLists;
     });
-    setListIds((prevIds) => {
-      const updatedIds = [...prevIds];
-      updatedIds.splice(index, 1);
-      return updatedIds;
-    })
-  }
+  };
 
   const togglePoseNameVisibility = () => {
     setShowPoseNames(!showPoseNames);
-  }
+  };
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>Search Asanas to add them to your lesson</h1>
-        <button className="download-btn" onClick={downloadPDF}>Download PDF</button>
       </header>
 
       <main>
         <div className="input">
           <button onClick={addList}>New List</button>
-          <AddPoseForm
-            addPose={addPose}
-            addList={addList}
-          />
+          <AddPoseForm addPose={addPose} addList={addList} />
           <button
             className={`toggle-btn ${showPoseNames ? 'toggled' : ''}`}
             onClick={togglePoseNameVisibility}
           >
-            <div className='circle'></div>
+            <div className="circle"></div>
           </button>
         </div>
 
-        <div
-          className="lists-container"
-          ref={pdfRef}
-        >
-          {lists && lists.map((list, index) => (
+        <div className="lists-container" ref={pdfRef}>
+          {lists &&
+            lists.map((list, index) => (
               <PoseList
-                key={`pose-list-${index}`}
-                id={listIds[index]}
+                key={list.id}
                 index={index}
+                id={list.id}
                 list={list}
                 setActiveList={setActiveList}
                 removePose={removePose}
-                updateListOrder={updateListOrder}
+                updateList={updateList}
                 removeList={removeList}
                 activeListIndex={activeListIndex}
                 showPoseNames={showPoseNames}
               />
-          ))}
-        </div>      
+            ))}
+        </div>
       </main>
     </div>
   );

@@ -6,6 +6,7 @@ li {
     min-width: 120px;
     max-width: 120px;
     position: relative;
+    user-select: none;
 }
 
 img {

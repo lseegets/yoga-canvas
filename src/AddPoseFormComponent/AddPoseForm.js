@@ -29,7 +29,7 @@ export default function AddPoseForm(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addNewPose(value);
+        //addNewPose(value);
     }
 
     const getImageByPoseName = (name) => {
@@ -42,7 +42,7 @@ export default function AddPoseForm(props) {
 
     return (
         <form
-            className="AddThoughtForm"
+            className="input-container"
             onSubmit={handleSubmit}
             >
                 <input
@@ -60,6 +60,7 @@ export default function AddPoseForm(props) {
                     })
                     .map((item) => (
                         <div
+                            key={item.id}
                             className="dropdown-item"
                             onClick={() => handleSearch(item.pose_name)}
                         >
