@@ -76,15 +76,32 @@ export default function App() {
       </header>
 
       <main>
-        <div className="input">
-          <button onClick={addList}>New List</button>
-          <AddPoseForm addPose={addPose} addList={addList} />
-          <button
-            className={`toggle-btn ${showPoseNames ? 'toggled' : ''}`}
-            onClick={togglePoseNameVisibility}
+        <div className="controls">
+          <div>
+            <button
+              className="add-list-btn"
+              onClick={addList}
+            >
+              New List
+            </button>
+          </div>
+          <div>
+            <AddPoseForm
+              addPose={addPose}
+              addList={addList}
+            />
+          </div>
+          <div
+            className="toggle-btn-container"
           >
-            <div className="circle"></div>
-          </button>
+            Toggle Asana names
+            <button
+              className={`toggle-btn ${showPoseNames ? 'toggled' : ''}`}
+              onClick={togglePoseNameVisibility}
+            >
+              <div className="circle"></div>
+            </button>
+          </div>
         </div>
 
         <div className="lists-container" ref={pdfRef}>

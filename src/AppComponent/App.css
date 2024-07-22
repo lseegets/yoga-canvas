@@ -7,15 +7,33 @@ body {
   overflow-x: hidden;
 }
 
-.input {
-  position: relative;
+.controls {
   display: flex;
-  flex-flow: column wrap;
-  align-items: center;
+  justify-content: space-between; /* Distributes space between items */
+  align-items: center; /* Aligns items vertically in the center */
+  padding: 0 20px; /* Adds padding to the container */
 }
 
 h1 {
   text-align: center;
+}
+
+.add-list-btn {
+  background-color: #f1d4b3;
+  border: 1px solid black;
+  border-radius: 7px;
+}
+
+.add-list-btn:hover {
+  background-color: #d6b187;
+}
+
+.toggle-btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
 }
 
 .toggle-btn {
