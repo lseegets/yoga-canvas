@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import sanitizeHtml from 'sanitize-html';
 import ContentEditable from 'react-contenteditable';
 import { Reorder } from 'framer-motion';
@@ -12,6 +12,10 @@ export default function PoseList({index, id, list, setActiveList, removePose, up
   const [poses, setPoses] = useState([]);
   const [listName, setListName] = useState(list.name);
   const [hideName, setHideName] = useState(true);
+
+  const removeBtnRef = useRef(null);
+  const hideBtnRef = useRef(null);
+  const listNameRef = useRef(null);
 
   useEffect(() => {
     setPoses(list.poses || []); // Ensure poses is an array
@@ -35,8 +39,10 @@ export default function PoseList({index, id, list, setActiveList, removePose, up
 
   const handleHover = (hovering) => {
     const visibility = hovering ? 'visible' : 'hidden';
-    document.getElementById(`remove-ul-button-${id}`).style.visibility = visibility;
-    document.getElementById(`hide-btn-${id}`).style.visibility = visibility;
+    if (removeBtnRef.current) removeBtnRef.current.style.visibility = visibility;
+    //document.getElementById(`remove-ul-button-${id}`).style.visibility = visibility;
+    if (hideBtnRef.current) hideBtnRef.current.style.visibility = visibility;
+    //document.getElementById(`hide-btn-${id}`).style.visibility = visibility;
   };
 
   const handleContainerClick = () => {
@@ -45,7 +51,8 @@ export default function PoseList({index, id, list, setActiveList, removePose, up
 
   const toggleHideName = () => {
     const visibility = !hideName ? 'visible' : 'hidden';
-    document.getElementById(`list-name-${index}`).style.visibility = visibility;
+    if (listNameRef.current) listNameRef.current.style.visibility = visibility;
+    //document.getElementById(`list-name-${index}`).style.visibility = visibility;
     setHideName((prev) => !prev);
   };
 
@@ -58,6 +65,7 @@ export default function PoseList({index, id, list, setActiveList, removePose, up
     >
       <header className="list-header">
         <div
+          ref={hideBtnRef}
           id={`hide-btn-${id}`}
           className="hide-btn-container"
           onClick={toggleHideName}
@@ -74,6 +82,7 @@ export default function PoseList({index, id, list, setActiveList, removePose, up
           html={listName}
           onChange={handleListNameChange}
           spellCheck="false"
+          innerRef={listNameRef}
         />
       </header>
       <Reorder.Group
@@ -94,6 +103,7 @@ export default function PoseList({index, id, list, setActiveList, removePose, up
           className="remove-ul-btn"
           onClick={handleRemove}
           id={`remove-ul-button-${id}`}
+          ref={removeBtnRef}
         >
           &times;
         </div>
