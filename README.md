@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Yoga Canvas
+
+**Yoga Canvas** is a React-based application that allows users to create, and manage customized yoga lesson plans. Users can add poses, organize them into lists, and reorder them as needed. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Features
+* **Add Asanas:** Users can search and add yoga poses to their lesson plans.
 
-In the project directory, you can run:
+* **Manage Lists:** Users can create multiple lists for different lesson plans, reorder poses within lists, and remove poses or entire lists.
 
-### `npm start`
+* **Toggle Asana Names:** Users can toggle the visibility of asana names.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* **Dynamic Pose Loading:** The app dynamically loads poses and their corresponding SVG images from a JSON list.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Project Status and Future Plans
 
-### `npm test`
+Although this project is currently functional, it is still being actively updated and improved. Planned updates include:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* **UI Optimization:** Enhancing the user interface for a more seamless experience.
 
-### `npm run build`
+* **Additional Poses:** Adding more asanas for a wider variety of poses.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* **New Features:** Implementing additional features based on user feedback and suggestions.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Built with
+* [ReactJS](https://react.dev/) - A JavaScript library for building user interfaces
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* [Framer Motion](https://www.framer.com/motion/) - A library used to implement drag-and-drop functionality
 
-### `npm run eject`
+## Setup
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Follow these steps to run **Yoga Canvas** on your machine.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Prerequisites
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* [Node.js](https://nodejs.org/en)
+* npm (Node Package Manager)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Installation
 
-## Learn More
+1. Clone the repository:
+```git clone https://github.com/lseegets/yoga-canvas.git```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Navigate to the project directory:
+```cd yoga-canvas```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Install the dependencies:
+`npm install`
 
-### Code Splitting
+4. Start the development server:
+`npm start`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Usage
 
-### Analyzing the Bundle Size
+### Managing Poses
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* **Create New List** Click the "New List" button to create a new list for a new lesson plan.
 
-### Making a Progressive Web App
+* **Search and Add Poses** Use the search bar to find and add poses to your active list.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+* **Reorder Poses:** Drag and drop poses within a list to reorder them.
 
-### Advanced Configuration
+* **Toggle Button:** Use the toggle button to show or hide pose names.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+* **Remove Poses:** Click the "×" button on a pose to remove it from the list.
 
-### Deployment
+### Managing Lists
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+* **Set Active List:** Click on a list header to set it as the active list.
 
-### `npm run build` fails to minify
+* **Rename Lists:** Click on the list name to make it editable and type the new name.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* **Toggle Button:** Use the toggle button to show or hide list names.
+
+* **Remove Lists:** Click the "×" button on a list to remove the entire list.
