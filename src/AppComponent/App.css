@@ -9,12 +9,13 @@ body {
 
 .controls {
   display: flex;
-  justify-content: space-between; /* Distributes space between items */
-  align-items: center; /* Aligns items vertically in the center */
-  padding: 0 20px; /* Adds padding to the container */
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }
 
-h1 {
+h1,
+h2 {
   text-align: center;
 }
 

@@ -2,13 +2,14 @@ import './App.css';
 import AddPoseForm from '../AddPoseFormComponent/AddPoseForm';
 import PoseList from '../PoseListComponent/PoseList';
 import { generateListId } from '../utilities';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 export default function App() {
   const [showPoseNames, setShowPoseNames] = useState(true);
   const [lists, setLists] = useState([]);
   const [activeListIndex, setActiveListIndex] = useState(0);
-  const pdfRef = useRef();
+
+  // Adds a new pose to the active list
 
   const addPose = (pose) => {
     setLists((prevLists) => {
@@ -41,10 +42,11 @@ export default function App() {
     setActiveListIndex(index);
   };
 
+  // Updates a list after reordering its pose items
+
   const updateList = (updatedList, updatedListId) => {
     const updatedLists = lists.map((list) =>
       list.id === updatedListId ? updatedList : list
-      //index === updatedListIndex ? updatedList : list
     );
     setLists(updatedLists);
   };
@@ -60,7 +62,7 @@ export default function App() {
   const removeList = (index) => {
     setLists((prevLists) => {
       const updatedLists = [...prevLists];
-      updatedLists.splice(index, 1); // Remove list at index
+      updatedLists.splice(index, 1);
       return updatedLists;
     });
   };
@@ -72,7 +74,8 @@ export default function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Search Asanas to add them to your lesson</h1>
+        <h1>Yoga Canvas</h1>
+        <h2>Search Asanas to add them to your lesson</h2>
       </header>
 
       <main>
@@ -104,7 +107,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className="lists-container" ref={pdfRef}>
+        <div className="lists-container">
           {lists &&
             lists.map((list, index) => (
               <PoseList
@@ -125,43 +128,3 @@ export default function App() {
     </div>
   );
 }
-
-/*
-
-<h3
-              id={generateListId()}
-              key={index}
-              className={`container${activeListIndex === index ? '-active' : ''}`}
-              onClick={() => setActiveList(index)}
-            >
-              List {index + 1}
-              <PoseList
-                key={`pose-list-${index}`}
-                id={`pose-list-${index}`}
-                index={index}
-                list={list}
-                setActiveList={setActiveList}
-                removePose={removePose}
-                updateListOrder={updateListOrder}
-                removeList={removeList}
-              />
-            </h3>
-        
-        
-        
-<Reorder.Group className="lists-container" axis="y" values={lists} onReorder={setLists}>
-          {lists && lists.map((list, index) => (
-              <PoseList
-                key={`pose-list-${index}`}
-                id={generateListId()}
-                index={index}
-                list={list}
-                setActiveList={setActiveList}
-                removePose={removePose}
-                updateListOrder={updateListOrder}
-                removeList={removeList}
-                activeListIndex={activeListIndex}
-                showPoseNames={showPoseNames}
-              />
-          ))}
-        </Reorder.Group> */

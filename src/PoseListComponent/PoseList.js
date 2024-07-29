@@ -7,6 +7,8 @@ import visibleImg from '../visible.svg';
 import invisibleImg from '../invisible.svg';
 import './PoseList.css';
 
+// Represents a list that displays yoga poses
+
 export default function PoseList({index, id, list, setActiveList, removePose, updateList, removeList, activeListIndex, showPoseNames}) {
 
   const [poses, setPoses] = useState([]);
@@ -18,7 +20,7 @@ export default function PoseList({index, id, list, setActiveList, removePose, up
   const listNameRef = useRef(null);
 
   useEffect(() => {
-    setPoses(list.poses || []); // Ensure poses is an array
+    setPoses(list.poses || []);
     setListName(list.name); 
   }, [list]);
 
@@ -40,10 +42,10 @@ export default function PoseList({index, id, list, setActiveList, removePose, up
   const handleHover = (hovering) => {
     const visibility = hovering ? 'visible' : 'hidden';
     if (removeBtnRef.current) removeBtnRef.current.style.visibility = visibility;
-    //document.getElementById(`remove-ul-button-${id}`).style.visibility = visibility;
     if (hideBtnRef.current) hideBtnRef.current.style.visibility = visibility;
-    //document.getElementById(`hide-btn-${id}`).style.visibility = visibility;
   };
+
+  // Sets the active list upon clicking it
 
   const handleContainerClick = () => {
     setActiveList(index);
@@ -52,7 +54,6 @@ export default function PoseList({index, id, list, setActiveList, removePose, up
   const toggleHideName = () => {
     const visibility = !hideName ? 'visible' : 'hidden';
     if (listNameRef.current) listNameRef.current.style.visibility = visibility;
-    //document.getElementById(`list-name-${index}`).style.visibility = visibility;
     setHideName((prev) => !prev);
   };
 
@@ -111,45 +112,3 @@ export default function PoseList({index, id, list, setActiveList, removePose, up
     </div>
   );
 }
-
-/**
- * <Reorder.Item
-        onClick={handleContainerClick}
-        className={`container${activeListIndex === index ? '-active' : ''}`}
-        as="h3"
-        value={list}
-        dragListener={false}
-        dragControls={controls}
-        onMouseEnter={handleHover}
-        onMouseLeave={handleHover}
-      >
-        <ContentEditable
-          className="list-name"
-          html={listName}
-          onChange={onListNameChange}
-        />
-        <Reorder.Group
-          axis="x" values={poses}
-          onReorder={handleReorder}
-        >
-          {Array.isArray(list) && poses.map((pose) => (
-            <Pose
-              className="pose"
-              key={pose.id}
-              pose={pose}
-              removePose={removePose}
-              showPoseNames={showPoseNames}
-            />
-          ))}
-          <div
-            className='remove-ul-btn'
-            onClick={handleRemove}
-            id={`remove-ul-button-${index}`}
-          >
-            &times;
-          </div>
-        </Reorder.Group>
-        <div className='move-list-btn' onPointerDown={(e) => controls.start(e)}>|||</div>
-
-      </Reorder.Item>
- */

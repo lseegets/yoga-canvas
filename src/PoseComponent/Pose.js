@@ -2,6 +2,8 @@ import './Pose.css';
 import React, { useState, useRef } from 'react';
 import { Reorder, useDragControls } from "framer-motion";
 
+// Represents a yoga pose, displaying its name and corresponding SVG
+
 export default function Pose({ pose, removePose, showPoseNames }) {
     const [isHovering, setIsHovering] = useState(false);
     const controls = useDragControls();

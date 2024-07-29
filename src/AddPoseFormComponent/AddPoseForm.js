@@ -7,6 +7,8 @@ export default function AddPoseForm(props) {
 
     const [value, setValue] = useState('');
 
+    // Handles search bar input
+
     const handleInputChange = (e) => {
         setValue(e.target.value);
     }
@@ -29,8 +31,9 @@ export default function AddPoseForm(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        //addNewPose(value);
     }
+
+    // Fetches an SVG depending on the selected pose
 
     const getImageByPoseName = (name) => {
         const pose = poseData.find(item => item.pose_name === name);
